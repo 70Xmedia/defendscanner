@@ -29,7 +29,7 @@
 
     html {
       width: 100%;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     body {
@@ -38,7 +38,7 @@
       color: var(--text);
       line-height: 1.4;
       width: 100%;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     a { text-decoration: none; }
@@ -432,13 +432,15 @@
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.4px;
+      box-shadow: 0 16px 34px rgba(255,94,0,0.35);
       animation: pulseCTA 2.2s infinite;
+      will-change: box-shadow;
     }
 
     @keyframes pulseCTA {
-      0%   { box-shadow: 0 16px 34px rgba(255,94,0,0.35); }
-      50%  { box-shadow: 0 22px 44px rgba(255,94,0,0.48); }
-      100% { box-shadow: 0 16px 34px rgba(255,94,0,0.35); }
+      0%   { box-shadow: 0 8px 20px rgba(255,94,0,0.30); }
+      50%  { box-shadow: 0 12px 28px rgba(255,94,0,0.50); }
+      100% { box-shadow: 0 8px 20px rgba(255,94,0,0.30); }
     }
 
     .cta a.secondary {
