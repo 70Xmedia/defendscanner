@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Defend Scanner— Dark Web Exposure Scan</title>
+  <title>Trusted Defender — Dark Web Exposure Scan</title>
 
   <style>
     :root{
@@ -90,12 +90,16 @@
       flex-shrink: 0;
     }
 
+    @media(max-width:400px){ .top-badge { display: none; } }
+
     /* ── MAIN CONTAINER ── */
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 28px 16px 60px;
       width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     /* ── HERO GRID ── */
@@ -256,7 +260,10 @@
       border: 1px solid var(--border);
       padding: 24px;
       width: 100%;
+      max-width: 100%;
       min-width: 0;
+      overflow: hidden;
+      box-sizing: border-box;
     }
 
     .results-top {
@@ -283,7 +290,7 @@
     .result-grid {
       margin-top: 18px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
 
@@ -308,6 +315,8 @@
       border-radius: 14px;
       overflow: hidden;
       width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .breach-header {
@@ -325,12 +334,14 @@
       padding: 14px;
       border-bottom: 1px solid var(--border);
       background: white;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     .breach-row:last-child { border-bottom: none; }
 
-    .breach-row .left  { flex: 1; min-width: 0; }
-    .breach-row .right { flex-shrink: 0; text-align: right; font-size: 12px; color: var(--muted); }
+    .breach-row .left  { flex: 1; min-width: 0; overflow: hidden; }
+    .breach-row .right { flex-shrink: 0; max-width: 140px; text-align: right; font-size: 12px; color: var(--muted); }
 
     .breach-row .left strong { display: block; font-size: 14px; margin-bottom: 4px; }
 
@@ -353,6 +364,7 @@
       border-radius: var(--radius);
       border: 1px solid var(--border);
       overflow: hidden;
+      max-width: 100%;
     }
 
     .action-header { background: linear-gradient(135deg, #0b4fa8, #0a63d8); padding: 18px; color: white; }
@@ -363,7 +375,7 @@
       background: white;
       padding: 18px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 16px;
     }
 
@@ -500,7 +512,7 @@
     @media(max-width:600px){
 
       header {
-        position: sticky; /* stay sticky, NOT fixed — avoids floating issues */
+        position: sticky;
         padding: 12px 14px;
       }
 
@@ -521,28 +533,32 @@
 
       .alert-card { padding: 16px; border-radius: 16px; }
 
-      .results { padding: 16px; border-radius: 16px; }
+      .results { padding: 14px; border-radius: 16px; }
 
       .results-top { flex-direction: column; }
-      .risk-badge  { width: 100%; text-align: center; }
+      .risk-badge  { width: 100%; text-align: center; box-sizing: border-box; }
 
       .result-grid { grid-template-columns: 1fr; }
 
-      /* BREACH ROWS — stack on mobile */
+      /* BREACH ROWS — always stack on mobile */
       .breach-row {
         flex-direction: column;
         gap: 8px;
         padding: 12px;
       }
 
+      .breach-row .left  { max-width: 100%; }
       .breach-row .right {
+        max-width: 100%;
         text-align: left;
-        padding-top: 4px;
+        padding-top: 6px;
         border-top: 1px solid var(--border);
       }
 
-      .action-body { grid-template-columns: 1fr; padding: 14px; }
-      .action-header { padding: 16px; }
+      /* ACTION — always single column on mobile */
+      .action-body { grid-template-columns: 1fr !important; padding: 12px; }
+      .action-header { padding: 14px; }
+      .action-card { padding: 14px; }
 
       .footer-inner { grid-template-columns: 1fr; }
     }
@@ -554,9 +570,9 @@
 <header>
   <div class="header-inner">
     <div class="brand">
-      <div class="logo">DS</div>
+      <div class="logo">TD</div>
       <div>
-        <h1>Defend Scanner</h1>
+        <h1>Trusted Defender</h1>
         <p>Dark Web Exposure Scanner (Prototype)</p>
       </div>
     </div>
@@ -741,9 +757,9 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <h6>Defend Scanner</h6>
-      <p>Defend Scannerprovides an informational cybersecurity awareness experience. This is a prototype interface designed to demonstrate how a dark web scan report may appear.</p>
-      <p style="margin-top:10px;">© <span id="year"></span> Defend Scanner. All rights reserved.</p>
+      <h6>Trusted Defender</h6>
+      <p>Trusted Defender provides an informational cybersecurity awareness experience. This is a prototype interface designed to demonstrate how a dark web scan report may appear.</p>
+      <p style="margin-top:10px;">© <span id="year"></span> Trusted Defender. All rights reserved.</p>
     </div>
     <div>
       <h6>Company</h6>
@@ -836,12 +852,12 @@
     const modal = document.getElementById("modal");
     const body = document.getElementById("modalBody");
     const content = {
-      about: `<h2>About Defend Scanner</h2><p>Defend Scanneris a cybersecurity awareness prototype designed to demonstrate how identity exposure reports may be displayed to users.</p>`,
+      about: `<h2>About Trusted Defender</h2><p>Trusted Defender is a cybersecurity awareness prototype designed to demonstrate how identity exposure reports may be displayed to users.</p>`,
       contact: `<h2>Contact Us</h2><p><strong>Email:</strong> support@trusteddefender.com</p>`,
       privacy: `<h2>Privacy Policy</h2><p>This prototype does not permanently store submitted email addresses. Scan results are generated locally in the browser for demonstration purposes.</p>`,
       terms: `<h2>Terms of Service</h2><p>Results may be simulated in this prototype environment and should not be considered a verified security audit.</p>`,
       cookies: `<h2>Cookie Policy</h2><p>This prototype does not require tracking cookies.</p>`,
-      disclaimer: `<h2>Disclaimer</h2><p>Defend Scanneris a prototype demonstration interface. Any breach findings shown are sample data.</p>`
+      disclaimer: `<h2>Disclaimer</h2><p>Trusted Defender is a prototype demonstration interface. Any breach findings shown are sample data.</p>`
     };
     body.innerHTML = content[type] || "";
     modal.style.display = "flex";
